@@ -34,8 +34,8 @@ jobs:
 
     strategy:
       fail-fast: false
-#       matrix:
-#         language: [ 'cpp' ]
+      matrix:
+        language: [ 'cpp' ]
 
     steps:
     - name: Checkout repository
@@ -46,8 +46,8 @@ jobs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
       with:
-#         languages: ${{ matrix.language }}
-        queries: microsoft/Windows-Driver-Developer-Supplemental-Tools/src/suites/mustfix.qls@main, microsoft/Windows-Driver-Developer-Supplemental-Tools/src/suites/recommended.qls@main
+        languages: ${{ matrix.language }}
+        queries: microsoft/Windows-Driver-Developer-Supplemental-Tools/codeql/windows-drivers/queries/suites/windows_drivers_mustfix.qls@WHCP_22H2
 
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
@@ -69,3 +69,4 @@ jobs:
       uses: github/codeql-action/analyze@v2
       with:
         category: "/language:${{matrix.language}}"
+
